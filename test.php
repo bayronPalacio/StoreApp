@@ -19,8 +19,8 @@ $product = new Product();
 $product->setAvailability("yes");
 $product->setDescription("Men t-shirt");
 $product->setName("T-Shirt");
-// $newProduct = (array)$product->jsonSerialize();
-$product->insert($product);
+$newProduct = (array)$product->jsonSerialize();
+$product->insert($newProduct);
 
 // var_dump($product->get("availability"));
 
