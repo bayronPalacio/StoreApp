@@ -1,5 +1,5 @@
 <?php
-class Product {
+class Product implements JsonSerializable {
 
     private $availability;
     private $barcode;
@@ -28,14 +28,10 @@ class Product {
 
     /**
      * Set the value of availability
-     *
-     * @return  self
      */ 
     public function setAvailability($availability)
     {
         $this->availability = $availability;
-
-        return $this;
     }
 
     /**
@@ -48,14 +44,10 @@ class Product {
 
     /**
      * Set the value of barcode
-     *
-     * @return  self
      */ 
     public function setBarcode($barcode)
     {
         $this->barcode = $barcode;
-
-        return $this;
     }
 
     /**
@@ -68,14 +60,10 @@ class Product {
 
     /**
      * Set the value of base_variant_id
-     *
-     * @return  self
      */ 
     public function setBase_variant_id($base_variant_id)
     {
         $this->base_variant_id = $base_variant_id;
-
-        return $this;
     }
 
     /**
@@ -88,14 +76,10 @@ class Product {
 
     /**
      * Set the value of brand_id
-     *
-     * @return  self
      */ 
     public function setBrand_id($brand_id)
     {
         $this->brand_id = $brand_id;
-
-        return $this;
     }
 
     /**
@@ -108,14 +92,10 @@ class Product {
 
     /**
      * Set the value of categories
-     *
-     * @return  self
      */ 
     public function setCategories($categories)
     {
         $this->categories = $categories;
-
-        return $this;
     }
 
     /**
@@ -128,14 +108,10 @@ class Product {
 
     /**
      * Set the value of cost_price
-     *
-     * @return  self
      */ 
     public function setCost_price($cost_price)
     {
         $this->cost_price = $cost_price;
-
-        return $this;
     }
 
     /**
@@ -148,14 +124,10 @@ class Product {
 
     /**
      * Set the value of description
-     *
-     * @return  self
      */ 
     public function setDescription($description)
     {
         $this->description = $description;
-
-        return $this;
     }
 
     /**
@@ -168,14 +140,10 @@ class Product {
 
     /**
      * Set the value of id
-     *
-     * @return  self
      */ 
     public function setId($id)
     {
         $this->id = $id;
-
-        return $this;
     }
 
     /**
@@ -188,14 +156,10 @@ class Product {
 
     /**
      * Set the value of inventory_level
-     *
-     * @return  self
      */ 
     public function setInventory_level($inventory_level)
     {
         $this->inventory_level = $inventory_level;
-
-        return $this;
     }
 
     /**
@@ -208,14 +172,10 @@ class Product {
 
     /**
      * Set the value of inventory_warning_level
-     *
-     * @return  self
      */ 
     public function setInventory_warning_level($inventory_warning_level)
     {
         $this->inventory_warning_level = $inventory_warning_level;
-
-        return $this;
     }
 
     /**
@@ -228,14 +188,10 @@ class Product {
 
     /**
      * Set the value of name
-     *
-     * @return  self
      */ 
     public function setName($name)
     {
         $this->name = $name;
-
-        return $this;
     }
 
     /**
@@ -248,14 +204,10 @@ class Product {
 
     /**
      * Set the value of preorder_message
-     *
-     * @return  self
      */ 
     public function setPreorder_message($preorder_message)
     {
         $this->preorder_message = $preorder_message;
-
-        return $this;
     }
 
     /**
@@ -268,14 +220,10 @@ class Product {
 
     /**
      * Set the value of price
-     *
-     * @return  self
      */ 
     public function setPrice($price)
     {
         $this->price = $price;
-
-        return $this;
     }
 
     /**
@@ -288,14 +236,10 @@ class Product {
 
     /**
      * Set the value of reviews_count
-     *
-     * @return  self
      */ 
     public function setReviews_count($reviews_count)
     {
         $this->reviews_count = $reviews_count;
-
-        return $this;
     }
 
     /**
@@ -308,14 +252,10 @@ class Product {
 
     /**
      * Set the value of reviews_rating_sum
-     *
-     * @return  self
      */ 
     public function setReviews_rating_sum($reviews_rating_sum)
     {
         $this->reviews_rating_sum = $reviews_rating_sum;
-
-        return $this;
     }
 
     /**
@@ -328,14 +268,25 @@ class Product {
 
     /**
      * Set the value of url_image
-     *
-     * @return  self
      */ 
     public function setUrl_image($url_image)
     {
         $this->url_image = $url_image;
-
-        return $this;
     }
+
+    //Serialize the object to JSON.
+    public function jsonSerialize(){   
+
+        //Or you can specify a new object of stdClass and add the attributes you want to return.
+        $obj = new stdClass;
+        //Add all the attributes you want.
+        $obj->CustomerID = $this->CustomerID;
+        $obj->Name = $this->Name;
+        $obj->Address = $this->Address;
+        $obj->City = $this->City;
+        return $obj;
+    }
+
+
 }    
 ?>
