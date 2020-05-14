@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">ConnectionPHP</string>
+    <string name="btngetdata">Get data</string>
+</resources>
