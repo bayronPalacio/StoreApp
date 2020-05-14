@@ -1,4 +1,8 @@
 <?php
+
+use Kreait\Firebase\Factory;
+use Kreait\Firebase\ServiceAccount;
+
 class Product implements JsonSerializable {
 
     private $availability;
@@ -277,16 +281,52 @@ class Product implements JsonSerializable {
     //Serialize the object to JSON.
     public function jsonSerialize(){   
 
-        //Or you can specify a new object of stdClass and add the attributes you want to return.
-        $obj = new stdClass;
-        //Add all the attributes you want.
-        $obj->CustomerID = $this->CustomerID;
-        $obj->Name = $this->Name;
-        $obj->Address = $this->Address;
-        $obj->City = $this->City;
-        return $obj;
+        $product = new stdClass;
+        //Add all the attributes
+        $product->availability = $this->availability;
+        $product->barcode = $this->barcode;
+        $product->base_variant_id = $this->base_variant_id;
+        $product->brand_id = $this->brand_id;
+        $product->categories = $this->categories;
+        $product->cost_price = $this->cost_price;
+        $product->description = $this->description;
+        $product->id = $this->id;
+        $product->inventory_level = $this->inventory_level;
+        $product->inventory_warning_level = $this->inventory_warning_level;
+        $product->name = $this->name;
+        $product->preorder_message = $this->preorder_message;
+        $product->price = $this->price;
+        $product->reviews_count = $this->reviews_count;
+        $product->reviews_rating_sum = $this->reviews_rating_sum;
+        $product->url_image = $this->url_image;
+        return $product;
     }
 
+    protected $database;
+    protected $dbname = 'product';
+    public function __construct(){
+        $acc = ServiceAccount::fromJsonFile(__DIR__ . '/research-project-dc-0c3ba7f477ae.json');
+        $firebase = (new Factory)->withServiceAccount($acc)
+        ->withDatabaseUri('https://research-project-dc.firebaseio.com')
+        ->create();
+        $this->database = $firebase->getDatabase();
+    }
+    
+    public function insert(Product $data) {
+        if (empty($data) || !isset($data)) { return FALSE; }
+        foreach ($data as $key => $value){
+            $this->database->getReference()->getChild($this->dbname)->getChild($key)->set($value);
+        }
+        return TRUE;
+    }
 
+    public function get(int $userID = NULL){    
+        if (empty($userID) || !isset($userID)) { return FALSE; }
+        if ($this->database->getReference($this->dbname)->getSnapshot()->hasChild($userID)){
+            return $this->database->getReference($this->dbname)->getChild($userID)->getValue();
+        } else {
+            return FALSE;
+        }
+    }
 }    
 ?>
