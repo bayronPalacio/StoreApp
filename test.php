@@ -22,6 +22,10 @@ $product->setName("T-Shirt");
 $newProduct = (array)$product->jsonSerialize();
 $product->insert($newProduct);
 
+
+$response["products"] = array();
+array_push($response["products"], $product);
+echo json_encode($response);
 // var_dump($product->get("availability"));
 
 
