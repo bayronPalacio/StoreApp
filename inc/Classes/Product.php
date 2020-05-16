@@ -1,8 +1,5 @@
 <?php
 
-use Kreait\Firebase\Factory;
-use Kreait\Firebase\ServiceAccount;
-
 class Product implements JsonSerializable {
 
     private $barcode;
@@ -264,36 +261,6 @@ class Product implements JsonSerializable {
         $product->reviews_rating_sum = $this->reviews_rating_sum;
         $product->url_image = $this->url_image;
         return $product;
-    }
-
-    protected $database;
-    protected $dbname = 'product';
-    public function __construct(){
-
-        // $acc = ServiceAccount::fromJsonFile(__DIR__ . '/research-project-dc-0c3ba7f477ae.json');//json pato
-        $acc = ServiceAccount::fromJsonFile(__DIR__ . '/phpandroid-954d76d1b771.json');//json byron
-        $firebase = (new Factory)->withServiceAccount($acc)
-        // ->withDatabaseUri('https://research-project-dc.firebaseio.com')//firebase pato
-        ->withDatabaseUri('https://phpandroid.firebaseio.com')//firebase byron
-        ->create();
-        $this->database = $firebase->getDatabase();
-    }
-    
-    public function insert(array $data) {
-        if (empty($data) || !isset($data)) { return FALSE; }
-        foreach ($data as $key => $value){
-            $this->database->getReference()->getChild($this->dbname)->getChild($key)->set($value);
-        }
-        return TRUE;
-    }
-
-    public function get(int $userID = NULL){    
-        if (empty($userID) || !isset($userID)) { return FALSE; }
-        if ($this->database->getReference($this->dbname)->getSnapshot()->hasChild($userID)){
-            return $this->database->getReference($this->dbname)->getChild($userID)->getValue();
-        } else {
-            return FALSE;
-        }
     }
 }    
 ?>
