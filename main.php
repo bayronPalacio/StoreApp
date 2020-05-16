@@ -32,8 +32,6 @@ foreach($readProducts as $product){
     $newProduct []= (array)$item->jsonSerialize();
 }
 
-var_dump($newProduct);
-
 $response["products"] = $newProduct;
 $item->insert($response);
 echo json_encode($response);
