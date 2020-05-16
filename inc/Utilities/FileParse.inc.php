@@ -17,7 +17,7 @@ function parseEvents($eventsFileContents)   {
             //Split by ','
             $cols = explode(",",$row[$r]);
             // echo count($cols);
-            if(count($cols) != 16){
+            if(count($cols) != 14){
                 throw new Exception("There was a problem parsing the file on line ".($r+1)."<BR>");
             }
 
