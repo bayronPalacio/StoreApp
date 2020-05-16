@@ -5,9 +5,7 @@ use Kreait\Firebase\ServiceAccount;
 
 class Product implements JsonSerializable {
 
-    private $availability;
     private $barcode;
-    private $base_variant_id;
     private $brand_id;
     private $categories;
     private $cost_price;
@@ -16,27 +14,11 @@ class Product implements JsonSerializable {
     private $inventory_level; 
     private $inventory_warning_level;
     private $name; 
-    private $preorder_message; 
+    private $review_message; 
     private $price; 
     private $reviews_count; 
     private $reviews_rating_sum; 
     private $url_image; 
-
-    /**
-     * Get the value of availability
-     */ 
-    public function getAvailability()
-    {
-        return $this->availability;
-    }
-
-    /**
-     * Set the value of availability
-     */ 
-    public function setAvailability($availability)
-    {
-        $this->availability = $availability;
-    }
 
     /**
      * Get the value of barcode
@@ -52,22 +34,6 @@ class Product implements JsonSerializable {
     public function setBarcode($barcode)
     {
         $this->barcode = $barcode;
-    }
-
-    /**
-     * Get the value of base_variant_id
-     */ 
-    public function getBase_variant_id()
-    {
-        return $this->base_variant_id;
-    }
-
-    /**
-     * Set the value of base_variant_id
-     */ 
-    public function setBase_variant_id($base_variant_id)
-    {
-        $this->base_variant_id = $base_variant_id;
     }
 
     /**
@@ -201,17 +167,17 @@ class Product implements JsonSerializable {
     /**
      * Get the value of preorder_message
      */ 
-    public function getPreorder_message()
+    public function getReview_message()
     {
-        return $this->preorder_message;
+        return $this->review_message;
     }
 
     /**
      * Set the value of preorder_message
      */ 
-    public function setPreorder_message($preorder_message)
+    public function setReview_message($review_message)
     {
-        $this->preorder_message = $preorder_message;
+        $this->review_message = $review_message;
     }
 
     /**
@@ -283,9 +249,7 @@ class Product implements JsonSerializable {
 
         $product = new stdClass;
         //Add all the attributes
-        $product->availability = $this->availability;
         $product->barcode = $this->barcode;
-        $product->base_variant_id = $this->base_variant_id;
         $product->brand_id = $this->brand_id;
         $product->categories = $this->categories;
         $product->cost_price = $this->cost_price;
@@ -294,7 +258,7 @@ class Product implements JsonSerializable {
         $product->inventory_level = $this->inventory_level;
         $product->inventory_warning_level = $this->inventory_warning_level;
         $product->name = $this->name;
-        $product->preorder_message = $this->preorder_message;
+        $product->review_message = $this->review_message;
         $product->price = $this->price;
         $product->reviews_count = $this->reviews_count;
         $product->reviews_rating_sum = $this->reviews_rating_sum;

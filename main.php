@@ -1,7 +1,7 @@
 <?php
 require __DIR__.'/vendor/autoload.php';
 require_once("Users.php");
-require_once("Product.php");
+require_once("inc/Classes/Product.php");
 require_once("inc/Utilities/FileAgent.inc.php");
 require_once("inc/Utilities/FileParse.inc.php");
 
