@@ -34,7 +34,7 @@ foreach($readProducts as $product){
     $newProduct []= (array)$item->jsonSerialize();
 }
 
-$response["products"] = $newProduct;
+$response[] = $newProduct;
 $dataToFirebase->insertProduct($response);
 echo json_encode($response);
 
