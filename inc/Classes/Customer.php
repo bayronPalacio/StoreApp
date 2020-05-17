@@ -2,53 +2,28 @@
 
 class Customer implements JsonSerializable {
 
-    private $city;
-    private $country;
+    private $address;
     private $email;
     private $first_name;
     private $id;
     private $last_name;
+    private $password;
     private $phone;
-    private $postal_code;
-    private $state;
-    private $street;
 
     /**
-     * Get the value of city
+     * Get the value of address
      */ 
-    public function getCity()
+    public function getAddress()
     {
-        return $this->city;
+        return $this->address;
     }
 
     /**
      * Set the value of city
-     *
-     * @return  self
      */ 
-    public function setCity($city)
+    public function setCity($address)
     {
-        $this->city = $city;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of country
-     */ 
-    public function getCountry()
-    {
-        return $this->country;
-    }
-
-    /**
-     * Set the value of country
-     *
-     * @return  self
-     */ 
-    public function setCountry($country)
-    {
-        $this->country = $country;
+        $this->address = $address;
 
         return $this;
     }
@@ -63,8 +38,6 @@ class Customer implements JsonSerializable {
 
     /**
      * Set the value of email
-     *
-     * @return  self
      */ 
     public function setEmail($email)
     {
@@ -83,8 +56,6 @@ class Customer implements JsonSerializable {
 
     /**
      * Set the value of first_name
-     *
-     * @return  self
      */ 
     public function setFirst_name($first_name)
     {
@@ -103,8 +74,6 @@ class Customer implements JsonSerializable {
 
     /**
      * Set the value of id
-     *
-     * @return  self
      */ 
     public function setId($id)
     {
@@ -123,12 +92,28 @@ class Customer implements JsonSerializable {
 
     /**
      * Set the value of last_name
-     *
-     * @return  self
      */ 
     public function setLast_name($last_name)
     {
         $this->last_name = $last_name;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of password
+     */ 
+    public function getPassword()
+    {
+        return $this->password;
+    }
+
+    /**
+     * Set the value of password
+     */ 
+    public function setPassword($password)
+    {
+        $this->password = $password;
 
         return $this;
     }
@@ -143,8 +128,6 @@ class Customer implements JsonSerializable {
 
     /**
      * Set the value of phone
-     *
-     * @return  self
      */ 
     public function setPhone($phone)
     {
@@ -153,81 +136,19 @@ class Customer implements JsonSerializable {
         return $this;
     }
 
-    /**
-     * Get the value of postal_code
-     */ 
-    public function getPostal_code()
-    {
-        return $this->postal_code;
-    }
-
-    /**
-     * Set the value of postal_code
-     *
-     * @return  self
-     */ 
-    public function setPostal_code($postal_code)
-    {
-        $this->postal_code = $postal_code;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of state
-     */ 
-    public function getState()
-    {
-        return $this->state;
-    }
-
-    /**
-     * Set the value of state
-     *
-     * @return  self
-     */ 
-    public function setState($state)
-    {
-        $this->state = $state;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of street
-     */ 
-    public function getStreet()
-    {
-        return $this->street;
-    }
-
-    /**
-     * Set the value of street
-     *
-     * @return  self
-     */ 
-    public function setStreet($street)
-    {
-        $this->street = $street;
-
-        return $this;
-    }
 
     //Serialize the object to JSON.
     public function jsonSerialize(){   
 
         $customer = new stdClass;
         //Add all the attributes
-        $customer->city = $this->city;
-        $customer->country = $this->country;
+        $customer->address = $this->address;
         $customer->email = $this->email;
         $customer->first_name = $this->first_name;
         $customer->id = $this->id;
         $customer->last_name = $this->last_name;
+        $customer->password= $this->password;
         $customer->phone = $this->phone;
-        $customer->postal_code = $this->postal_code;
-        $customer->state = $this->state;
-        $customer->street = $this->street;
         
         return $customer;
     }
