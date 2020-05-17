@@ -39,6 +39,14 @@ class Communication {
         }
     }
 
+    public function getCustomers(){ 
+    //     if ($this->database->getReference($this->dbnameCustomer)->getSnapshot()->hasChild(0)){
+    //         return $this->database->getReference($this->dbnameCustomer)->getChild(0)->getValue();
+    //     }
+    //     else return false;
+        return $this->database->getReference($this->dbnameProduct)->getSnapshot();
+    }
+
     public function insertProduct(array $data) {
         if (empty($data) || !isset($data)) { return FALSE; }
         foreach ($data as $key => $value){

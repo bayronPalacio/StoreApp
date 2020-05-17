@@ -37,17 +37,16 @@ foreach($readProducts as $product){
     $newProduct []= $item;
 }
 
-$response[] = $newProduct;
-$dataToFirebase->insertProduct($response);
-echo json_encode($response);
+$dataToFirebase->insertProduct($newProduct);
+echo json_encode($newProduct);
 
 $newCustomer = new Customer();
 $newCustomer->setCity("Vancouver");
 $newCustomer->setCountry("Canada");
 $newCustomer->setEmail("da@gmail.com");
-$newCustomer->setFirst_name("Bart");
+$newCustomer->setFirst_name("Bayron");
 $newCustomer->setId("1");
-$newCustomer->setLast_name("Simpson");
+$newCustomer->setLast_name("Palacio");
 $newCustomer->setPhone("432-324-2343");
 $newCustomer->setPostal_code("V8D 9E9");
 $newCustomer->setState("BC");
@@ -88,4 +87,6 @@ $response2[] = $order;
 $dataToFirebase->insertOrder($response2);
 echo json_encode($response2);
 
+$arrayCustomers = $dataToFirebase->getCustomers();
+var_dump($arrayCustomers);
 ?>
