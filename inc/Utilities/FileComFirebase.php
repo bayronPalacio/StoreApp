@@ -3,12 +3,13 @@
 use Kreait\Firebase\Factory;
 use Kreait\Firebase\ServiceAccount;
 
-
 class Communication {
     
     protected $database;
     protected $dbnameCustomer = 'customer';
     protected $dbnameProduct = 'product';
+    protected $dbnameProductOrder = 'productOrder';
+    protected $dbnameOrder = 'order';
 
     public function __construct(){
 
@@ -29,6 +30,15 @@ class Communication {
         return TRUE;
     }
 
+    public function getCustomer(int $userID = NULL){    
+        if (empty($userID) || !isset($userID)) { return FALSE; }
+        if ($this->database->getReference($this->dbnameCustomer)->getSnapshot()->hasChild($userID)){
+            return $this->database->getReference($this->dbnameCustomer)->getChild($userID)->getValue();
+        } else {
+            return FALSE;
+        }
+    }
+
     public function insertProduct(array $data) {
         if (empty($data) || !isset($data)) { return FALSE; }
         foreach ($data as $key => $value){
@@ -36,6 +46,23 @@ class Communication {
         }
         return TRUE;
     }
-    
+
+    public function insertOrder(array $data) {
+        if (empty($data) || !isset($data)) { return FALSE; }
+        foreach ($data as $key => $value){
+            $this->database->getReference()->getChild($this->dbnameOrder)->getChild($key)->set($value);
+        }
+        return TRUE;
+    }    
+
+    public function insertProductOrder(array $data) {
+        if (empty($data) || !isset($data)) { return FALSE; }
+        foreach ($data as $key => $value){
+            $this->database->getReference()->getChild($this->dbnameProductOrder)->getChild($key)->set($value);
+        }
+        return TRUE;
+    }  
+
 }
+
 ?>

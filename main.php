@@ -3,6 +3,9 @@ require __DIR__.'/vendor/autoload.php';
 
 require_once("inc/Classes/Product.php");
 require_once("inc/Classes/Customer.php");
+require_once("inc/Classes/ProductOrdered.php");
+require_once("inc/Classes/Order.php");
+
 require_once("inc/Utilities/FileAgent.inc.php");
 require_once("inc/Utilities/FileParse.inc.php");
 require_once("inc/Utilities/FileComFirebase.php");
@@ -31,7 +34,7 @@ foreach($readProducts as $product){
     $item->setReviews_rating_sum((int)$product[12]);
     $item->setUrl_image($product[13]);
     
-    $newProduct []= (array)$item->jsonSerialize();
+    $newProduct []= $item;
 }
 
 $response["products"] = $newProduct;
@@ -51,9 +54,38 @@ $newCustomer->setState("BC");
 $newCustomer->setStreet("23 Tofino Street");
 
 $customer = (array)$newCustomer->jsonSerialize();
-$response1["customers"] = $customer;
+$response1[] = $customer;
 
 $dataToFirebase->insertCustomer($response1);
 echo json_encode($response1);
+
+
+$proOrder = new ProductOrdered();
+$proOrder->setId("2");
+$proOrder->setName("Test Order");
+$proOrder->setOrder_id("1");
+$proOrder->setPrice("123");
+$proOrder->setQuantity("2");
+
+
+$order = new Order();
+$order->setCart_id(2);
+$order->setCustomer($customer);
+$order->setCustomer_message("What");
+$order->setDate_created("09-12-20");
+$order->setDate_shipped("21-12-20");
+$order->setId(1);
+$order->setItems_total(2);
+$order->setPayment_method("Debit");
+$order->setPayment_status("Done");
+$order->setProductsOrdered($proOrder);
+$order->setShipping_cost("43");
+$order->setStatus("Green");
+$order->setTotal("2423");
+$order->setTotal_tax("323");
+
+$response2[] = $order;
+$dataToFirebase->insertOrder($response2);
+echo json_encode($response2);
 
 ?>

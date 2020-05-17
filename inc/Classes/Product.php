@@ -1,7 +1,6 @@
 <?php
 
 class Product implements JsonSerializable {
-
     private $barcode;
     private $brand_id;
     private $categories;
@@ -243,7 +242,6 @@ class Product implements JsonSerializable {
 
     //Serialize the object to JSON.
     public function jsonSerialize(){   
-
         $product = new stdClass;
         //Add all the attributes
         $product->barcode = $this->barcode;
