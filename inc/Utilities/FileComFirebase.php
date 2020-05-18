@@ -71,6 +71,14 @@ class Communication {
         return TRUE;
     }  
 
-}
 
+    public function insertCustomerPush(array $data) {
+        if (empty($data) || !isset($data)) { return FALSE; }
+        else{
+            $this->database->getReference()->getChild($this->dbnameCustomer)->push($data);
+            return TRUE;
+        }       
+    }
+    
+}
 ?>

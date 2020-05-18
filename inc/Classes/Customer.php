@@ -21,7 +21,7 @@ class Customer implements JsonSerializable {
     /**
      * Set the value of city
      */ 
-    public function setCity($address)
+    public function setAddress($address)
     {
         $this->address = $address;
 
